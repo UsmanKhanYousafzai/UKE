@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usman Khan Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a84c;--gold-light:#e2c97e;--black:#080808;--dark:#111111;--cream:#f5f0e8;--grey:#888;--white:#ffffff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(8,8,8,0.95);border-bottom:1px solid rgba(201,168,76,0.15);backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--gold);letter-spacing:2px}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{font-size:11px;letter-spacing:2px;color:#aaa;text-decoration:none;text-transform:uppercase;transition:color 0.3s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.page{display:none;min-height:100vh;padding-top:70px}
+.page.active{display:block}
+.hero{min-height:calc(100vh - 70px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:4rem 2rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,0.07) 0%,transparent 70%)}
+.hero-tag{font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;animation:fadeUp 1s ease both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,10vw,110px);font-weight:900;line-height:0.95;animation:fadeUp 1s ease 0.2s both}
+.hero-title .gold{color:var(--gold);font-weight:300}
+.hero-title .ent{display:block;font-size:clamp(18px,3.5vw,38px);font-weight:300;letter-spacing:12px;color:#aaa;margin-top:1rem}
+.hero-line{width:80px;height:1px;background:var(--gold);margin:2.5rem auto;animation:fadeUp 1s ease 0.4s both}
+.hero-sub{font-size:13px;color:#888;max-width:500px;line-height:2;font-weight:300;letter-spacing:0.5px;animation:fadeUp 1s ease 0.6s both;margin-bottom:1.5rem}
+.hero-founder{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);letter-spacing:1px;margin-bottom:2.5rem;animation:fadeUp 1s ease 0.7s both}
+.hero-founder span{font-style:normal;font-size:10px;color:#666;letter-spacing:3px;display:block;margin-bottom:4px}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s ease 0.8s both}
+.btn-gold{padding:14px 36px;background:var(--gold);color:var(--black);border:none;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all 0.3s}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-outline{padding:14px 36px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all 0.3s}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.05)}
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15)}
+.stat{padding:2.5rem 1rem;text-align:center;border-right:1px solid rgba(201,168,76,0.15)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:900;color:var(--gold)}
+.stat-label{font-size:9px;color:#666;letter-spacing:3px;margin-top:4px}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(201,168,76,0.1)}
+.pillar{background:var(--black);padding:3rem 2rem;border-bottom:2px solid transparent;transition:all 0.4s}
+.pillar:hover{border-bottom-color:var(--gold);background:var(--dark)}
+.pillar-num{font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:1.5rem}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:1rem}
+.pillar-text{font-size:12px;color:#666;line-height:1.8;font-weight:300}
+.about-hero,.ventures-hero,.contact-hero{padding:5rem 3rem 3rem;border-bottom:1px solid rgba(201,168,76,0.1)}
+.page-label{font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,80px);font-weight:900;line-height:1}
+.page-title .gold{color:var(--gold);font-weight:300}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(201,168,76,0.1)}
+.about-text{padding:4rem 3rem;border-right:1px solid rgba(201,168,76,0.1)}
+.about-text p{font-size:14px;color:#888;line-height:2;font-weight:300;margin-bottom:1.5rem}
+.about-visual{padding:4rem 3rem;background:var(--dark);display:flex;flex-direction:column;justify-content:center;gap:2rem}
+.info-row{display:flex;flex-direction:column;gap:4px}
+.info-label{font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.info-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600}
+.info-divider{width:40px;height:1px;background:rgba(201,168,76,0.3)}
+.values{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-bottom:1px solid rgba(201,168,76,0.1)}
+.value-item{padding:2.5rem 2rem;border-right:1px solid rgba(201,168,76,0.1)}
+.value-item:last-child{border-right:none}
+.value-icon{font-size:24px;margin-bottom:1rem}
+.value-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:0.5rem;color:var(--gold)}
+.value-text{font-size:12px;color:#666;line-height:1.8}
+.ventures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(201,168,76,0.1)}
+.venture-card{background:var(--black);padding:3rem 2.5rem;transition:background 0.3s;position:relative;overflow:hidden}
+.venture-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.4s}
+.venture-card:hover::after{width:100%}
+.venture-card:hover{background:var(--dark)}
+.venture-num{font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:1.5rem}
+.venture-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:1rem}
+.venture-desc{font-size:12px;color:#666;line-height:1.9;font-weight:300}
+.venture-tag{display:inline-block;margin-top:1.5rem;font-size:9px;color:var(--gold);letter-spacing:3px;border:1px solid rgba(201,168,76,0.3);padding:4px 12px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.contact-info{padding:4rem 3rem;border-right:1px solid rgba(201,168,76,0.1)}
+.contact-item{margin-bottom:2.5rem}
+.contact-label{font-size:9px;color:var(--gold);letter-spacing:3px;margin-bottom:0.5rem}
+.contact-val{font-family:'Cormorant Garamond',serif;font-size:18px;color:#ccc}
+.contact-form{padding:4rem 3rem;background:var(--dark)}
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;font-size:9px;color:var(--gold);letter-spacing:3px;margin-bottom:8px}
+.form-group input,.form-group textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.2);color:var(--white);padding:12px 16px;font-family:'Montserrat',sans-serif;font-size:13px;outline:none;transition:border 0.3s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group textarea{height:120px}
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(201,168,76,0.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--gold)}
+.footer-tag{font-size:9px;color:#444;letter-spacing:3px;margin-top:2px}
+.footer-copy{font-size:10px;color:#444;letter-spacing:1px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){nav{padding:1rem 1.2rem}.nav-logo{font-size:13px}.nav-links{gap:1rem}.about-grid,.contact-grid{grid-template-columns:1fr}.about-text{border-right:none;border-bottom:1px solid rgba(201,168,76,0.1)}.contact-info{border-right:none;border-bottom:1px solid rgba(201,168,76,0.1)}.stats-bar{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid rgba(201,168,76,0.1)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Usman Khan Enterprises</div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a onclick="showPage('ventures')" id="nav-ventures">Ventures</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page active" id="page-home">
+  <section class="hero">
+    <p class="hero-tag">Est. 2023 · Pakistan · Spain</p>
+    <h1 class="hero-title">USMAN <span class="gold">KHAN</span><span class="ent">ENTERPRISES</span></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">A legacy built on vision, integrity, and an unrelenting commitment to excellence. More than a company — a statement.</p>
+    <div class="hero-founder"><span>Founded By</span>Usman Khan Yousafzai</div>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="showPage('ventures')">Our Ventures</button>
+      <button class="btn-outline" onclick="showPage('about')">Our Story</button>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">2023</div><div class="stat-label">Year Founded</div></div>
+    <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Countries</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ambition</div></div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><div class="pillar-num">01</div><div class="pillar-title">Vision</div><p class="pillar-text">Building enterprises with long-term clarity and unwavering purpose behind every decision.</p></div>
+    <div class="pillar"><div class="pillar-num">02</div><div class="pillar-title">Legacy</div><p class="pillar-text">A name that stands for excellence across every venture, every partnership, every endeavour.</p></div>
+    <div class="pillar"><div class="pillar-num">03</div><div class="pillar-title">Integrity</div><p class="pillar-text">Doing business the right way, every single time — no shortcuts, no compromise.</p></div>
+    <div class="pillar"><div class="pillar-num">04</div><div class="pillar-title">Growth</div><p class="pillar-text">Scaling ideas into institutions that outlast trends and stand the test of generations.</p></div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Usman Khan Enterprises</div><div class="footer-tag">(PVT.) LTD. · PRIVATELY REGISTERED COMPANY</div></div>
+    <div class="footer-copy">© 2026 Usman Khan Enterprises. All rights reserved.</div>
+  </footer>
+</div>
+
+<div class="page" id="page-about">
+  <div class="about-hero"><p class="page-label">Who We Are</p><h1 class="page-title">The <span class="gold">Legacy</span><br>Behind the Name</h1></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Usman Khan Enterprises is not simply a business — it is a declaration. Founded in 2023 by Usman Khan Yousafzai, the company was built on a foundation of ambition, discipline, and an unrelenting drive to create something that lasts.</p>
+      <p>Operating across Pakistan and Spain, we bring an international perspective to everything we do — combining the rich entrepreneurial spirit of the East with the strategic precision of the West.</p>
+      <p>Every venture, every decision, every partnership carries the full weight of a name that stands for excellence. This is not just business. This is legacy.</p>
+    </div>
+    <div class="about-visual">
+      <div class="info-row"><div class="info-label">Founded By</div><div class="info-val">Usman Khan Yousafzai</div></div>
+      <div class="info-divider"></div>
+      <div class="info-row"><div class="info-label">Title</div><div class="info-val">Founder · CEO · Director</div></div>
+      <div class="info-divider"></div>
+      <div class="info-row"><div class="info-label">Established</div><div class="info-val">2023 · Incorporated</div></div>
+      <div class="info-divider"></div>
+      <div class="info-row"><div class="info-label">Presence</div><div class="info-val">Pakistan 🇵🇰 · Spain 🇪🇸</div></div>
+      <div class="info-divider"></div>
+      <div class="info-row"><div class="info-label">Status</div><div class="info-val">Privately Registered (Pvt.) Ltd.</div></div>
+    </div>
+  </div>
+  <div class="values">
+    <div class="value-item"><div class="value-icon">⚡</div><div class="value-title">Vision</div><p class="value-text">Seeing opportunities where others see obstacles. Building for tomorrow, today.</p></div>
+    <div class="value-item"><div class="value-icon">🏛</div><div class="value-title">Legacy</div><p class="value-text">Everything we build is meant to outlast us — institutions, not just businesses.</p></div>
+    <div class="value-item"><div class="value-icon">🤝</div><div class="value-title">Integrity</div><p class="value-text">Our word is our bond. We do business with honesty, transparency and respect.</p></div>
+    <div class="value-item"><div class="value-icon">🌍</div><div class="value-title">Global</div><p class="value-text">International availability with a local understanding of every market we enter.</p></div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Usman Khan Enterprises</div><div class="footer-tag">(PVT.) LTD. · PRIVATELY REGISTERED COMPANY</div></div>
+    <div class="footer-copy">© 2026 Usman Khan Enterprises. All rights reserved.</div>
+  </footer>
+</div>
+
+<div class="page" id="page-ventures">
+  <div class="ventures-hero"><p class="page-label">What We Do</p><h1 class="page-title">Our <span class="gold">Ventures</span></h1></div>
+  <div class="ventures-grid">
+    <div class="venture-card"><div class="venture-num">01</div><div class="venture-name">Commerce</div><p class="venture-desc">Premium trade and business operations built for scale. From sourcing to distribution, we do it right.</p><div class="venture-tag">ACTIVE</div></div>
+    <div class="venture-card"><div class="venture-num">02</div><div class="venture-name">Real Estate</div><p class="venture-desc">Strategic property investments across key markets in Pakistan and Spain. Building wealth through bricks.</p><div class="venture-tag">ACTIVE</div></div>
+    <div class="venture-card"><div class="venture-num">03</div><div class="venture-name">Technology</div><p class="venture-desc">Forward-thinking ventures at the edge of innovation. Solving tomorrow's problems with today's tools.</p><div class="venture-tag">GROWING</div></div>
+    <div class="venture-card"><div class="venture-num">04</div><div class="venture-name">Consulting</div><p class="venture-desc">Expert strategic guidance for businesses ready to scale, pivot, or dominate their market.</p><div class="venture-tag">AVAILABLE</div></div>
+    <div class="venture-card"><div class="venture-num">05</div><div class="venture-name">International Trade</div><p class="venture-desc">Cross-border business operations leveraging our dual presence in Pakistan and Spain.</p><div class="venture-tag">ACTIVE</div></div>
+    <div class="venture-card"><div class="venture-num">06</div><div class="venture-name">Investments</div><p class="venture-desc">Calculated, strategic investments in high-potential ventures across multiple sectors.</p><div class="venture-tag">SELECTIVE</div></div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Usman Khan Enterprises</div><div class="footer-tag">(PVT.) LTD. · PRIVATELY REGISTERED COMPANY</div></div>
+    <div class="footer-copy">© 2026 Usman Khan Enterprises. All rights reserved.</div>
+  </footer>
+</div>
+
+<div class="page" id="page-contact">
+  <div class="contact-hero"><p class="page-label">Get In Touch</p><h1 class="page-title">Let's <span class="gold">Connect</span></h1></div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item"><div class="contact-label">Instagram</div><div class="contact-val">@kh1n.enterprises</div></div>
+      <div class="contact-item"><div class="contact-label">Headquarters</div><div class="contact-val">Pakistan 🇵🇰</div></div>
+      <div class="contact-item"><div class="contact-label">International Office</div><div class="contact-val">Spain 🇪🇸</div></div>
+      <div class="contact-item"><div class="contact-label">Availability</div><div class="contact-val">International</div></div>
+      <div class="contact-item"><div class="contact-label">Founded By</div><div class="contact-val">Usman Khan Yousafzai</div></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Subject</label><input type="text" placeholder="What's this about?"></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your inquiry..."></textarea></div>
+      <button class="btn-gold" style="width:100%">Send Message</button>
+    </div>
+  </div>
+  <footer>
+    <div><div class="footer-logo">Usman Khan Enterprises</div><div class="footer-tag">(PVT.) LTD. · PRIVATELY REGISTERED COMPANY</div></div>
+    <div class="footer-copy">© 2026 Usman Khan Enterprises. All rights reserved.</div>
+  </footer>
+</div>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
